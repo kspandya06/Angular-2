@@ -1,0 +1,48 @@
+<!--seperate file for templates-->
+
+<h1> {{name}}</h1>
+  <p><strong> Email:</strong> {{email}}
+  <p><strong>contact:</strong>{{contact}}
+  <p>Address:{{address.street}}  {{address.city}} {{address.state}}</p>
+   <div *ngIf = "showHobbies">
+     <h4><strong> Hobbies: {{hobbies}}</strong></h4> </div>
+
+  <button (click) = "toggleHobbies()"> {{showHobbies? "Hide Hobbies" : "Show Hobbies"}} </button> 
+                    <div *ngIf = "showHobbies">
+                    <h3>Hobbies: </h3> 
+                    <ul>
+                            <li *ngFor = "let hobby of hobbies; let i = index">
+                                {{ hobby}} <button (click) = "deleteHobby(i)"> Delete </button>
+                                </li>
+                    </ul> </div>
+
+              <form (submit) = "addHobby (hobby.value)">
+                  <label> Add Hobbies:</label><br/>
+                   <input type = "text" #hobby>
+              </form>
+  
+    <hr/>
+  <hr/>
+  <h3> Edit User Details </h3>
+  
+    <form> 
+         <label> Name: </label>
+        <input type = "text" name = "name" [(ngModel)] = "name"/> <br /><br/>
+       <label> Email:</label>
+        <input type = "email" name = "email" [(ngModel)] = "email"/><br/><br/>
+        <label> Prefered contact: </label>
+        <input type = "text" name = " contact" [(ngModel)] = "contact"/><br/> <br/>
+        <label> street: </label>
+        <input type = "text" name = "address.street" [(ngModel)] = "address.street"/> <br/> <br/>
+        <label> city: </label>
+        <input type = "text" name = "address.city" [(ngModel)] = "address.city"/> <br/> <br/>
+        <label> State: </label>
+        <input type = "text" name = " address.state" [(ngModel)] = "address.state"/> <br/> <br/>
+              </form>
+
+              
+              <h3>Posts</h3>
+              <div *ngFor = "let post of posts">
+                <h3> {{post.title}}</h3>
+                <p>{{post.body}}</p>
+                </div>
